@@ -1,8 +1,10 @@
 package com.lab1;
 
+
 /**
  * The HelloWorldClass implements an application
- * that displays "Hello World!" to the standard output
+ * that displays "Hello World!" and multiplication of variables a
+ * and b to the standard output
  */
 public class HelloWorldApp {
     public static void main(String[] args) {
