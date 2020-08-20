@@ -1,6 +1,6 @@
 package com.lab1;
 
-/*
+/**
  * The HelloWorldClass implements an application
  * that displays "Hello World!" to the standard output
  */
