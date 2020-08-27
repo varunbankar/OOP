@@ -84,60 +84,60 @@ public class Fraction {
      * Add Fraction with other Fraction
      */
     public void addFraction(Fraction other) {
-        arithmeticOperation(other, '+');
+        arithmeticOperation(this, other, '+');
     }
 
     /**
      * Subtract Fraction with other Fraction
      */
     public void subtractFraction(Fraction other) {
-        arithmeticOperation(other, '-');
+        arithmeticOperation(this, other, '-');
     }
 
     /**
      * Mulitply Fraction with other Fraction
      */
     public void multiplyFraction(Fraction other) {
-        arithmeticOperation(other, '*');
+        arithmeticOperation(this, other, '*');
     }
 
     /**
      * Divide Fraction with other Fraction
      */
     public void divideFraction(Fraction other) {
-        arithmeticOperation(other, '/');
+        arithmeticOperation(this, other, '/');
     }
 
     /**
-     * Private method to perform arithmetic operations with Fractions. Increases code reusability.
+     * Private method to perform arithmetic operations with Fractions. Increases code reusability
+     * as it can perform arithmetic operation on any 2 Fractions no necessarily this one.
      * */
-    private void arithmeticOperation(Fraction other, char operation) {
+    public static void arithmeticOperation(Fraction f1, Fraction f2, char operation) {
 
         switch (operation) {
             case '+':
-                this.num = (this.num * other.denom) + (other.num * this.denom);
-                this.denom = this.denom * other.denom;
+                f1.num = (f1.num * f2.denom) + (f2.num * f1.denom);
+                f1.denom = f1.denom * f2.denom;
                 break;
             case '-':
-                this.num = (this.num * other.denom) - (other.num * this.denom);
-                this.denom = this.denom * other.denom;
+                f1.num = (f1.num * f2.denom) - (f2.num * f1.denom);
+                f1.denom = f1.denom * f2.denom;
                 break;
             case '*':
-                this.num = this.num * other.num;
-                this.denom = this.denom * other.denom;
-                this.print();
+                f1.num = f1.num * f2.num;
+                f1.denom = f1.denom * f2.denom;
                 break;
             case '/':
-                this.num = this.num * other.denom;
-                this.denom = this.denom * other.num;
+                f1.num = f1.num * f2.denom;
+                f1.denom = f1.denom * f2.num;
                 break;
         }
 
-        reduce();
+        f1.reduce();
     }
 
     /**
-     * Prints the numerator and denominator of the Franction
+     * Prints the numerator and denominator of the Fraction
      * */
     public void print() {
         System.out.print(this.num + " " + this.denom);
