@@ -9,7 +9,7 @@ public class OOP {
     }
 
     public static void main(String[] args) {
-        System.out.println(oop.x); // Error doesn't have access
+//        System.out.println(oop.x); // Error doesn't have access
     }
 
 }
