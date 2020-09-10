@@ -1,18 +1,23 @@
-package com.practice;
+package com.lab4;
 
 public class BankAccount {
 
     private double balance;
-    private final Long accNo;
+    private Long accNo;
     private int numberOfTransactions;
+    private String lastTran;
+    private String name;
+    private String address;
 
     private static final double MIN_BALANCE = 1000;
     private static Long nextAccNo = 1800201311L;
 
-    public BankAccount(double balance) {
+    public BankAccount(String name, String address, double balance) {
         if (balance < MIN_BALANCE) {
             throw new IllegalArgumentException("Need balance more than " + MIN_BALANCE + " to create an account.");
         }
+        this.name = name;
+        this.address = address;
         this.accNo = nextAccNo++;
         this.balance = balance;
         this.numberOfTransactions = 0;
@@ -22,13 +27,15 @@ public class BankAccount {
         if (amount < 0) return false;
         this.balance += amount;
         this.numberOfTransactions++;
+        this.lastTran = "Deposit";
         return true;
     }
 
     public boolean withdraw(double amount) {
-        if (amount < 0 || balance < amount + MIN_BALANCE ) return false;
+        if (amount < 0 || balance < amount + MIN_BALANCE) return false;
         this.balance -= amount;
         this.numberOfTransactions++;
+        this.lastTran = "Withdraw";
         return true;
     }
 
@@ -41,31 +48,13 @@ public class BankAccount {
         if (withdraw) {
             boolean deposit = other.deposit(amount);
         }
+        this.lastTran = "Transfer";
+        other.lastTran = "Transfer";
     }
 
-    public void print() {
-        System.out.println("Account No.: " + this.accNo + " | Balance: " + this.balance + " | No. Of Transactions: " + this.numberOfTransactions);
-    }
-
-    public static void main(String[] args) {
-        BankAccount ba1 = new BankAccount(1000);
-        BankAccount ba2 = new BankAccount(1000);
-        ba1.print();
-        ba2.print();
-
-        ba1.deposit(1000);
-        ba2.deposit(2500);
-        ba1.print();
-        ba2.print();
-
-        ba1.withdraw(500);
-        ba2.withdraw(750);
-        ba1.print();
-        ba2.print();
-
-        ba2.transfer(ba1, 1000);
-        ba1.print();
-        ba2.print();
+    @Override
+    public String toString() {
+        return "Account No.: " + this.accNo + " | Name: " + this.name + " | Address: " + this.address + " | Last Transaction: " + this.lastTran;
     }
 
 }
