@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.lab5.BankAccount</OriginalElement>
+  <nodes>
+    <node x="370.0" y="216.0">com.lab5.FDAccount</node>
+    <node x="0.0" y="249.5">com.lab5.SavingsAccount</node>
+    <node x="363.0" y="0.0">com.lab5.BankAccount</node>
+    <node x="657.0" y="216.5">com.lab5.CheckingAccount</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.lab5.CheckingAccount" target="com.lab5.BankAccount">
+      <point x="0.0" y="-94.0" />
+      <point x="811.5" y="191.0" />
+      <point x="597.1666666666667" y="191.0" />
+      <point x="93.66666666666669" y="83.0" />
+    </edge>
+    <edge source="com.lab5.SavingsAccount" target="com.lab5.BankAccount">
+      <point x="0.0" y="-61.0" />
+      <point x="175.0" y="191.0" />
+      <point x="409.8333333333333" y="191.0" />
+      <point x="-93.66666666666669" y="83.0" />
+    </edge>
+    <edge source="com.lab5.FDAccount" target="com.lab5.BankAccount">
+      <point x="0.0" y="-94.5" />
+      <point x="0.0" y="83.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="483.0" y="202.5" />
+  <SelectedNodes>
+    <node>com.lab5.SavingsAccount</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
