@@ -10,12 +10,6 @@
   </nodes>
   <notes />
   <edges>
-    <edge source="com.lab5.CheckingAccount" target="com.lab5.BankAccount">
-      <point x="0.0" y="-94.0" />
-      <point x="811.5" y="191.0" />
-      <point x="597.1666666666667" y="191.0" />
-      <point x="93.66666666666669" y="83.0" />
-    </edge>
     <edge source="com.lab5.SavingsAccount" target="com.lab5.BankAccount">
       <point x="0.0" y="-61.0" />
       <point x="175.0" y="191.0" />
@@ -25,6 +19,12 @@
     <edge source="com.lab5.FDAccount" target="com.lab5.BankAccount">
       <point x="0.0" y="-94.5" />
       <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="com.lab5.CheckingAccount" target="com.lab5.BankAccount">
+      <point x="0.0" y="-94.0" />
+      <point x="811.5" y="191.0" />
+      <point x="597.1666666666667" y="191.0" />
+      <point x="93.66666666666669" y="83.0" />
     </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="1.0" x="483.0" y="202.5" />
