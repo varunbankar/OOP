@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.lab6.BankAccount</OriginalElement>
+  <nodes>
+    <node x="0.0" y="0.0">com.lab6.BankAccount</node>
+    <node x="290.0" y="344.0">com.lab6.LastTransaction</node>
+    <node x="0.0" y="344.0">com.lab6.PersonalDetails</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="245.5" y="233.0" />
+  <SelectedNodes>
+    <node>com.lab6.BankAccount</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
