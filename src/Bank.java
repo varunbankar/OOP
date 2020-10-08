@@ -1,102 +1,135 @@
-public class Bank implements IBank {
-
-    public FixedDeposit[] fd;
-    public SavingsAccount[] sv;
-    public LoansAccount[] ln;
-    public int numFDS;
-    public int numLoans;
-    public int numSV;
-
-    public Bank() {
-        this.fd = new FixedDeposit[MAX_FDS];
-        this.sv = new SavingsAccount[MAX_SAVINGS_ACCOUNT];
-        this.ln = new LoansAccount[MAX_LOANS];
-        this.numFDS = 0;
-        this.numLoans = 0;
-        this.numSV = 0;
-    }
-
-    public boolean createAccount(char type, int amount, float interestRate, int period) {
-
-        if (type == 'f') {
-            if (this.numFDS >= MAX_FDS) return false;
-            this.fd[this.numFDS] = new FixedDeposit(amount, interestRate, period);
-            this.numFDS++;
-            return true;
+public class Bank implements IBank
+{
+	public FixedDeposit[] fd;
+	public SavingsAccount[] sv;
+	public LoansAccount[] ln;
+	public int numFDS;
+	public int numLoans;
+	public int numSV;
+	
+	public Bank()
+	{
+		fd=new FixedDeposit[MAX_FDS];
+        ln=new LoansAccount[MAX_LOANS];
+        sv=new SavingsAccount[MAX_SAVINGS_ACCOUNT];
+	}
+	
+	public boolean createAccount(char type,int amount,float interest,int period) 
+	{
+        if(type=='f') 
+        {
+                if(numFDS < MAX_FDS)
+                {
+                    FixedDeposit fd1 = new FixedDeposit(amount,interest,period);
+                    fd[numFDS++]=fd1;
+                    return true;
+                }
+                else
+                {
+                	return false;
+                }
         }
-        else if (type == 's') {
-            if (this.numSV >= MAX_SAVINGS_ACCOUNT) return false;
-            this.sv[this.numSV] = new SavingsAccount(amount, interestRate, period);
-            this.numSV++;
-            return true;
+        else if(type=='s')
+        {
+                if(numSV<MAX_SAVINGS_ACCOUNT)
+                {
+                    SavingsAccount fd1 = new SavingsAccount(amount,interest,period);
+                    sv[numSV++]=fd1;
+                    return true;
+                }
+                else
+                {
+                	return false;
+                }
+        }      
+        else if(type=='l')
+        {
+                if(numFDS<MAX_LOANS)
+                {
+                    LoansAccount fd1 = new LoansAccount(amount,interest,period);
+                    ln[numLoans++]=fd1;
+                    return true;
+                }
+                else
+                {
+                	return false;
+                }         
         }
-        else if (type == 'l') {
-            if (this.numLoans >= MAX_LOANS) return false;
-            this.ln[this.numLoans] = new LoansAccount(amount, interestRate, period);
-            this.numLoans++;
-            return true;
+        else
+        {
+        	return false;
+        }
+    }	
+	public boolean deleteAccount(String accno)
+    {
+        if(accno.startsWith("sav"))
+        {
+            for(int i=0;i<numSV;i++)
+            {
+                if(sv[i].getAccountNumber().equals(accno))
+                {
+                    sv[i] = null;
+                    if (numSV - i + 1 >= 0) System.arraycopy(sv, i + 1, sv, i + 1 - 1, numSV - i + 1);
+                    sv[--numSV] = null;
+                    return true;
+                }
+            }
+        }
+        else if(accno.startsWith("fd"))
+        {
+            for(int i=0;i<numFDS;i++)
+            {
+                if(fd[i].getAccountNumber().equals(accno))
+                {
+                    fd[i] = null;
+                    if (numFDS - i + 1 >= 0) System.arraycopy(fd, i + 1, fd, i + 1 - 1, numFDS - i + 1);
+                    fd[--numFDS] = null;
+                    return true;
+                }
+            }
+        }
+        else if(accno.substring(0,4).equals("loan"))
+        {
+            for(int i=0;i<numLoans;i++)
+            {
+                if(ln[i].getAccountNumber().equals(accno))
+                {
+                    ln[i] = null;
+                    if (numLoans - i + 1 >= 0) System.arraycopy(ln, i + 1, ln, i + 1 - 1, numLoans - i + 1);
+                    ln[--numLoans] = null;
+                    return true;
+                }
+            }
+        }
+        else 
+        {
+            return false;
         }
         return false;
     }
-
-    public boolean deleteAccount(java.lang.String accno) {
-        for (int i = 0; i < this.numSV; i++) {
-            if (this.sv[i].accountNumber.compareTo(accno) == 0) {
-                for (int j = i; j < this.numSV-1; j++) {
-                    this.sv[j] = this.sv[j+1];
-                }
-                this.sv[this.numSV] = null;
-                this.numSV--;
-                return true;
-            }
+	public double profitFromLoans() 
+	{
+        double profit_loan=0;
+        for(int i=0;i<numLoans;i++) 
+        {
+            if(ln[i]!=null)
+            profit_loan+=(ln[i].getReturns()-ln[i].getPrincipalAmount());
         }
-
-        for (int i = 0; i < this.numLoans; i++) {
-            if (this.ln[i].accountNumber.compareTo(accno) == 0) {
-                for (int j = i; j < this.numLoans-1; j++) {
-                    this.ln[j] = this.ln[j+1];
-                }
-                this.ln[this.numLoans] = null;
-                this.numLoans--;
-                return true;
-            }
-        }
-
-        for (int i = 0; i < this.numFDS; i++) {
-            if (this.fd[i].accountNumber.compareTo(accno) == 0) {
-                for (int j = i; j < this.numFDS-1; j++) {
-                    this.fd[j] = this.fd[j+1];
-                }
-                this.fd[this.numFDS] = null;
-                this.numFDS--;
-                return true;
-            }
-        }
-
-        return false;
+        return profit_loan;
     }
-
-    public double profitFromLoans() {
-        double totalReturns = 0;
-        int totalPrincipalAmount = 0;
-        for (int i = 0; i < this.numLoans; i++) {
-            totalReturns += this.ln[i].getReturns();
-            totalPrincipalAmount += this.ln[i].getPrincipalAmount();
+	public double interestToPay()
+    {
+        double interest_to_pay = 0;
+        for(int i=0;i<numSV;i++ )
+        {
+            if(sv[i]!=null)
+            	interest_to_pay+= (sv[i].getReturns()-sv[i].getPrincipalAmount() );
         }
-        return totalReturns - totalPrincipalAmount;
-    }
-
-    public double interestToPay() {
-        double totalReturns = 0;
-        int totalPrincipalAmount = 0;
-        for (int i = 0; i < this.numSV; i++) {
-            totalReturns += this.sv[i].getReturns();
-            totalPrincipalAmount += this.sv[i].getPrincipalAmount();
+        for(int i=0;i<numFDS;i++ )
+        {
+            if(fd[i]!=null)
+            	interest_to_pay+= (fd[i].getReturns()-fd[i].getPrincipalAmount() );
         }
-        for (int i = 0; i < this.numFDS; i++) {
-            totalReturns += this.fd[i].getReturns();
-            totalPrincipalAmount += this.fd[i].getPrincipalAmount();
-        }
-        return totalReturns - totalPrincipalAmount;
+        return interest_to_pay;
     }
 }

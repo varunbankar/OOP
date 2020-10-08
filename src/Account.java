@@ -1,23 +1,17 @@
+import java.lang.Math; 
+
 public abstract class Account {
-
-    protected String accountNumber;
-    protected int principalAmount;
-
-    public Account(int amount) {
-        if (amount < 0) throw new IllegalArgumentException("Amount cannot be less than 0");
-        this.principalAmount = amount;
-    }
-
-    public int getPrincipalAmount() {
-        return this.principalAmount;
-    }
-
-    public static double pow(double a, int b) {
-        return Math.pow(a, b);
-    }
-
-    abstract String getAccountNumber();
-
-    abstract double getReturns();
-
+	protected java.lang.String accountNumber ;
+	protected int principalAmount;
+	public Account(int amount) {
+		principalAmount = amount;
+	}
+	public int getPrincipalAmount() {
+		return principalAmount;
+	}
+	public static double pow(double a, int b) {
+		return Math.pow(a, b);
+	}
+	public abstract java.lang.String getAccountNumber() ;
+	public abstract double getReturns() ; 
 }
